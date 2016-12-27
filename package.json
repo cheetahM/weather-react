@@ -1,0 +1,33 @@
+{
+  "name": "weather-react",
+  "version": "1.0.0",
+  "description": "Weather App using React and Open Weather API",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cheetahM/weather-react.git"
+  },
+  "author": "Chetan Meshram",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cheetahM/weather-react/issues"
+  },
+  "homepage": "https://github.com/cheetahM/weather-react#readme",
+  "dependencies": {
+    "axios": "^0.15.3",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-router": "^3.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-preset-react": "^6.16.0",
+    "html-webpack-plugin": "^2.24.1",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
+  }
+}
