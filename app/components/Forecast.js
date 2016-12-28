@@ -1,47 +1,37 @@
 var React = require('react');
+var PropTypes = React.PropTypes;
 var ReactRouter = require('react-router');
 var getWeatherHelpers = require('../utils/getWeatherHelpers');
 
 var Forecast = React.createClass({
-  contextTypes: {
-    router: React.PropTypes.object.isRequired
-  },
-  getInitialState: function() {
-    return {
-      isLoading: true
-    }
-  },
-  componentDidMount: function() {
-    console.log('context',this.context);
-    const city = this.context.router.params.city;
-    if(this.context.router.params.city) {
-      this.setState({
-        isLoading:false
-      });
-      getWeatherHelpers.getWeatherInfo(city)
-      .then(function(weather) {
-        console.log(weather.data.city.name);
-        console.log(weather.data.list.weather)
-        console.log(weather.data.list[0].weather[0].description);
-      })
-      .catch(function(err) {
-        console.log('Errror in getWeatherInfo:', err);
-      });
-    }
-  },
   render: function() {
-    let Loader = null;
-    var isLoading = this.state.isLoading;
-    if(isLoading) {
+    /*if(this.props.isLoading) {
       Loader = <p>Loading...</p>
+    }*/
+    function puke(obj) {
+      return <pre>{JSON.stringify(obj, null, 2)}</pre>;
     }
-    return (
-      <div>
-        <p>Forecast component</p>
-        {Loader}
-      </div>
-    );
+    return this.props.isLoading === true
+      ? <div> Loading...</div>
+      : <div>
+          {console.log(this.props.weather)}
+          <h1>{this.props.weather.data.city.name} Forecast</h1>
+          <div>
+            {this.props.weather.data.list[0].weather[0].description}
+            <div>
+            {this.props.weather.data.list.map(function(item, index) {
+              return <p><img src={`http://openweathermap.org/img/${item.weather[0].icon}.png`} />{item.weather[0].description}</p>;
+              })
+            })}
+            </div>
+          </div>
+        </div>
   }
 });
+
+Forecast.PropTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  weather: PropTypes.object.isRequired
+}
 
 module.exports = Forecast;

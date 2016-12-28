@@ -19,16 +19,6 @@ var Home = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
     var city = this.state.city;
-    /*getWeatherHelpers.getWeatherInfo(city);
-    getWeatherHelpers.getWeatherInfo(city)
-      .then(function(weather) {
-        console.log(weather.data.city.name);
-        console.log(weather.data.list.weather)
-        console.log(weather.data.list[0].weather[0].description);
-      })
-      .catch(function(err) {
-        console.log('Errror in getWeatherInfo:', err);
-      })*/
     this.context.router.push('/forecast/' + this.state.city)
   },
   handleChange: function(e) {
